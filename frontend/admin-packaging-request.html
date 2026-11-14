@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Packaging Requests</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/admin-packaging-request.css">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container py-4">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2 class="text-success">
+<i class="fa-solid fa-recycle"></i>
+Packaging Requests
+</h2>
+
+<a href="admin-dashboard.html" class="btn btn-success">
+<i class="fa-solid fa-arrow-left"></i>
+Dashboard
+</a>
+
+</div>
+
+<div class="row mb-4">
+
+<div class="col-md-3">
+<div class="card text-center shadow-sm">
+<div class="card-body">
+<h3 id="totalRequests" class="text-primary">0</h3>
+<p>Total Requests</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center shadow-sm">
+<div class="card-body">
+<h3 id="pendingRequests" class="text-warning">0</h3>
+<p>Pending</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center shadow-sm">
+<div class="card-body">
+<h3 id="approvedRequests" class="text-success">0</h3>
+<p>Approved</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center shadow-sm">
+<div class="card-body">
+<h3 id="rejectedRequests" class="text-danger">0</h3>
+<p>Rejected</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row mb-4">
+
+<div class="col-md-3">
+<div class="card text-center shadow-sm">
+<div class="card-body">
+<h3 id="totalRewardPoints" class="text-dark">0</h3>
+<p>Total Reward Points</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center shadow-sm">
+<div class="card-body">
+<h3 id="farmerRewards" class="text-success">0</h3>
+<p>Farmer Rewards</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center shadow-sm">
+<div class="card-body">
+<h3 id="retailerRewards" class="text-primary">0</h3>
+<p>Retailer Rewards</p>
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card text-center shadow-sm">
+<div class="card-body">
+<h3 id="walletBalance" class="text-warning">0</h3>
+<p>Total Wallet Balance</p>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-hover bg-white">
+
+<thead class="table-success">
+
+<tr>
+
+<th>Customer</th>
+<th>Seller</th>
+<th>Type</th>
+<th>Packaging</th>
+<th>Condition</th>
+<th>Status</th>
+<th>Reward</th>
+
+</tr>
+
+</thead>
+
+<tbody id="requestsTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="js/admin-packaging-request.js"></script>
+
+</body>
+
+</html>

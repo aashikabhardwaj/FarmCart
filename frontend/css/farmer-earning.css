@@ -1,0 +1,102 @@
+body{
+    background:#f5f7fa;
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card i{
+    width:70px;
+    height:70px;
+    line-height:70px;
+    border-radius:50%;
+    background:#e8f5e9;
+    margin:auto;
+}
+
+.card h3{
+    font-weight:700;
+    margin-top:10px;
+}
+
+.card-header{
+    border-radius:18px 18px 0 0 !important;
+    font-weight:600;
+}
+
+.table td,
+.table th{
+    vertical-align:middle;
+}
+
+.table tbody tr:hover{
+    background:#f8f9fa;
+}
+
+.btn-success{
+    border-radius:10px;
+}
+
+/* ===== FARMER NAVBAR ===== */
+
+.farmer-navbar {
+    width: 100%;
+    height: 90px;
+    background-color: #198754;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.farmer-brand {
+    color: white;
+    font-size: 42px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background-color: white;
+    color: #212529;
+
+    text-decoration: none;
+
+    padding: 12px 22px;
+    border-radius: 10px;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.dashboard-btn:hover {
+    background-color: #f1f1f1;
+    color: #212529;
+}
+
+.dashboard-btn i {
+    font-size: 18px;
+}
+
+
+@media(max-width:768px){
+
+    .card{
+        margin-bottom:20px;
+    }
+
+}

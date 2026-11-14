@@ -1,0 +1,260 @@
+body{
+    background:#f4f7fb;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    background:#16a34a;
+    color:white;
+    padding:18px 0;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.topbar h3{
+    margin:0;
+    font-weight:700;
+}
+
+/* ================= HERO ================= */
+
+
+.hero{
+
+    background:linear-gradient(135deg,#dcfce7,#bbf7d0);
+
+    color:#166534;
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    margin-bottom:70px;
+
+}
+
+.hero h1{
+
+    font-size:48px;
+
+    font-weight:700;
+    color:#166534;
+
+}
+
+.hero p{
+
+    color:#15803d;
+
+    font-size:20px;
+
+    margin-top:12px;
+
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    text-align:center;
+
+    margin-top:-60px;
+
+}
+
+.profile-img{
+
+    width:140px;
+
+    height:140px;
+
+    border-radius:50%;
+
+    border:6px solid #16a34a;
+
+    object-fit:cover;
+
+}
+
+.profile-card h2{
+
+    margin-top:20px;
+
+    font-weight:700;
+
+}
+
+.profile-card p{
+
+    color:#6b7280;
+
+    margin-bottom:10px;
+
+}
+
+#role{
+
+    display:inline-block;
+
+    background:#16a34a;
+
+    color:white;
+
+    padding:8px 20px;
+
+    border-radius:20px;
+
+    text-transform:capitalize;
+
+}
+
+.verified{
+
+    margin-top:18px;
+
+    color:#16a34a;
+
+    font-weight:600;
+
+}
+
+/* ================= SECTION ================= */
+
+.section-title{
+
+    margin-bottom:25px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+/* ================= OVERVIEW ================= */
+
+.overview-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.3s;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.overview-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.overview-card i{
+
+    font-size:38px;
+
+    color:#16a34a;
+
+    margin-bottom:18px;
+
+}
+
+.overview-card h5{
+
+    color:#6b7280;
+
+}
+
+.overview-card h2{
+
+    margin-top:15px;
+
+    color:#16a34a;
+
+    font-size:36px;
+
+    font-weight:bold;
+
+}
+
+/* ================= INFO ================= */
+
+.info-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.info-card h3{
+
+    margin-bottom:25px;
+
+}
+
+.table th{
+
+    width:180px;
+
+}
+
+/* ================= ACTION ================= */
+
+.action-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.action-card:hover{
+
+    transform:translateY(-8px);
+
+    background:#16a34a;
+
+    color:white;
+
+}
+
+.action-card i{
+
+    font-size:42px;
+
+    margin-bottom:18px;
+
+}
+
+.logout:hover{
+
+    background:#dc2626;
+
+}

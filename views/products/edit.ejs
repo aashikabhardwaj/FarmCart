@@ -1,0 +1,63 @@
+<h2>Edit Product</h2>
+
+<form action="/products/<%= product._id %>?_method=PUT" method="POST">
+    <!-- Product Name -->
+    <label for="name">Name:</label>
+    <input type="text" name="product[name]" id="name" value="<%= product.name %>" required>
+    <br><br>
+
+    <!-- Image URL -->
+    <label for="image">Image URL:</label>
+    <input type="text" name="product[image]" id="image" value="<%= product.image %>" required>
+    <br><br>
+
+    <!-- Price -->
+    <label for="price">Price (₹):</label>
+    <input type="number" name="product[price]" id="price" min="0" value="<%= product.price %>" required>
+    <br><br>
+
+    <!-- Quantity -->
+    <label for="quantity">Quantity:</label>
+    <input type="text" name="product[quantity]" id="quantity" value="<%= product.quantity %>" required>
+    <br><br>
+
+    <!-- Description -->
+    <label for="description">Description:</label><br>
+    <textarea name="product[description]" id="description" rows="3" cols="30" required><%= product.description %></textarea>
+    <br><br>
+
+    <!-- Category -->
+    <label for="category">Category:</label>
+    <select name="product[category]" id="category" required>
+        <option value="Vegetable" <%= product.category === "Vegetable" ? "selected" : "" %>>Vegetable</option>
+        <option value="Fruit" <%= product.category === "Fruit" ? "selected" : "" %>>Fruit</option>
+        <option value="Dairy" <%= product.category === "Dairy" ? "selected" : "" %>>Dairy</option>
+        <option value="Grain" <%= product.category === "Grain" ? "selected" : "" %>>Grain</option>
+        <option value="Other" <%= product.category === "Other" ? "selected" : "" %>>Other</option>
+    </select>
+    <br><br>
+
+    <!-- Seller -->
+    <label for="seller">Seller Name:</label>
+    <input type="text" name="product[seller]" id="seller" value="<%= product.seller %>" required>
+    <br><br>
+
+    <!-- Availability -->
+    <label for="availability">Availability:</label>
+    <select name="product[availability]" id="availability">
+        <option value="true" <%= product.availability ? "selected" : "" %>>In Stock</option>
+        <option value="false" <%= !product.availability ? "selected" : "" %>>Out of Stock</option>
+    </select>
+    <br><br>
+
+    <!-- Ratings -->
+    <label for="ratings">Ratings (0-5):</label>
+    <input type="number" name="product[ratings]" id="ratings" min="0" max="5" step="0.1" value="<%= product.ratings %>">
+    <br><br>
+
+    <!-- Submit -->
+    <button type="submit">Update Product</button>
+</form>
+
+<br>
+<a href="/products/<%= product._id %>">Back to Product</a>

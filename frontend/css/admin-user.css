@@ -1,0 +1,185 @@
+/* =========================
+   Admin Users Page CSS
+========================= */
+
+
+body{
+
+    background:#f5f7fb;
+    font-family: Arial, sans-serif;
+
+}
+
+
+
+/* Navbar */
+
+.navbar{
+
+    padding:15px 0;
+
+}
+
+
+.navbar-brand{
+
+    font-size:22px;
+    font-weight:600;
+
+}
+
+
+
+
+/* Page Header */
+
+.page-header{
+
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+
+}
+
+
+.page-header h2{
+
+    font-weight:700;
+
+}
+
+
+.page-header p{
+
+    margin-bottom:0;
+
+}
+
+
+
+
+/* Stats Cards */
+
+.card{
+
+    border:none;
+    border-radius:15px;
+
+}
+
+
+.row .card{
+
+    transition:0.3s;
+
+}
+
+
+.row .card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+
+
+.card h2{
+
+    font-weight:700;
+
+}
+
+
+
+
+/* Search Filter */
+
+#searchUser,
+#roleFilter{
+
+    height:45px;
+    border-radius:10px;
+
+}
+
+
+
+
+/* Table */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+
+.table thead{
+
+    background:#0d6efd;
+    color:white;
+
+}
+
+
+.table thead th{
+
+    padding:15px;
+
+}
+
+
+
+.table tbody td{
+
+    vertical-align:middle;
+
+}
+
+
+
+
+/* Action Buttons */
+
+.action-btn{
+
+    border:none;
+    padding:6px 10px;
+    border-radius:8px;
+
+}
+
+
+
+.edit-btn{
+
+    background:#ffc107;
+    color:white;
+
+}
+
+
+.delete-btn{
+
+    background:#dc3545;
+    color:white;
+
+}
+
+
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .page-header h2{
+
+        font-size:22px;
+
+    }
+
+
+}

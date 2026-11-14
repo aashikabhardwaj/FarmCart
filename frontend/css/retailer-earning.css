@@ -1,0 +1,97 @@
+body{
+    background:#f5f7fb;
+    font-family:'Segoe UI', sans-serif;
+}
+
+
+.container{
+    padding-top:30px;
+}
+
+
+h2{
+    font-weight:700;
+    color:#1f2937;
+    margin-bottom:35px;
+}
+
+
+.row{
+    margin-top:20px;
+}
+
+
+.card{
+
+    border:none;
+    border-radius:18px;
+    padding:25px !important;
+    background:white;
+    transition:0.3s;
+
+}
+
+.chart-card{
+  padding:30px !important;
+}
+
+
+.card:hover{
+
+    transform:translateY(-8px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.12)!important;
+
+}
+
+
+.card h5{
+
+    color:#6b7280;
+    font-size:16px;
+    margin-bottom:15px;
+
+}
+
+
+.card h2{
+
+    color:#16a34a;
+    font-size:32px;
+    margin:0;
+
+}
+
+
+/* Different card colors */
+
+.col-md-4:nth-child(2) .card h2{
+    color:#2563eb;
+}
+
+
+.col-md-4:nth-child(3) .card h2{
+    color:#9333ea;
+}
+
+
+.col-md-4:nth-child(4) .card h2{
+    color:#059669;
+}
+
+
+.col-md-4:nth-child(5) .card h2{
+    color:#d97706;
+}
+
+
+.col-md-4:nth-child(6) .card h2{
+    color:#dc2626;
+}
+
+.chart-container{
+    width:100%;
+    max-width:700px;
+    height:400px;
+    margin:auto;
+    position:relative;
+}

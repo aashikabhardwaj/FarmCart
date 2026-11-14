@@ -1,0 +1,71 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product</title>
+</head>
+<body>
+  <h1>Add New Product</h1>
+  <form action="/products" method="POST">
+    <label>Name:</label>
+    <input type="text" name="product[name]" required><br><br>
+
+    <label>Price:</label>
+    <input type="number" name="product[price]" required><br><br>
+
+    <label>Quantity:</label>
+    <input type="number" name="product[quantity]" required><br><br>
+
+    <label>Description:</label>
+    <textarea name="product[description]" required></textarea><br><br>
+
+    <label>Category:</label>
+    <input type="text" name="product[category]"><br><br>
+
+    <label>Seller:</label>
+    <input type="text" name="product[seller]"><br><br>
+
+    <label>Image URL:</label>
+    <input type="text" name="product[image]"><br><br>
+
+    <button type="submit">Add Product</button>
+  </form>
+  <br>
+  <a href="/products">Back to Products</a>
+</body>
+</html>-->
+
+<h1>Add New Product</h1>
+
+<form action="/products" method="POST" enctype="multipart/form-data">
+    <label>Product Name:</label>
+    <input type="text" name="name" required>
+
+    <label>Price:</label>
+    <input type="number" name="price" required>
+
+    <label>Seller:</label>
+    <select name="seller" required>
+        <% sellers.forEach(seller => { %>
+            <option value="<%= seller._id %>"><%= seller.name %></option>
+        <% }) %>
+    </select>
+    
+    <label>Category:</label>
+     <select name="category" required>
+        <% categories.forEach(category => { %>
+        <option value="<%= category %>"><%= category %></option>
+        <% }) %>
+     </select>
+            <label>Quantity:</label>
+            <input type="number" name="quantity" value="1" min="1" required>
+            <label>Description:</label>
+            <textarea name="description" rows="4"></textarea>
+            <label>Product Image:</label>
+            <input type="file" name="image">
+            <button type="submit">Add Product</button>
+</form>
+
+
+
+

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin - Products</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/admin-product.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+<div class="container">
+
+<a class="navbar-brand" href="admin-dashboard.html">
+
+<i class="fa-solid fa-leaf"></i>
+FarmCart Admin
+
+</a>
+
+<button class="navbar-toggler"
+data-bs-toggle="collapse"
+data-bs-target="#adminNav">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse" id="adminNav">
+
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link"
+href="admin-dashboard.html">
+Dashboard
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+href="admin-user.html">
+Users
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link active"
+href="admin-product.html">
+Products
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+href="admin-order.html">
+Orders
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+href="admin-packaging-returns.html">
+Packaging Returns
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+href="admin-profile.html">
+Profile
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="logout()"
+style="cursor:pointer">
+Logout
+</a>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- ================= PAGE ================= -->
+
+<div class="container mt-4">
+
+<div class="page-header mb-4">
+
+<h2>
+
+<i class="fa-solid fa-boxes-stacked text-primary"></i>
+
+Product Management
+
+</h2>
+
+<p class="text-muted">
+
+Manage all farmer and retailer products
+
+</p>
+
+</div>
+
+<!-- ================= STATS ================= -->
+
+<div class="row g-4 mb-4">
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+<i class="fa-solid fa-box fa-2x text-primary"></i>
+
+<h5 class="mt-2">
+
+Total Products
+
+</h5>
+
+<h2 id="totalProducts">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+<i class="fa-solid fa-seedling fa-2x text-success"></i>
+
+<h5 class="mt-2">
+
+Farmer Products
+
+</h5>
+
+<h2 id="farmerProducts">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+<i class="fa-solid fa-store fa-2x text-warning"></i>
+
+<h5 class="mt-2">
+
+Retailer Products
+
+</h5>
+
+<h2 id="retailerProducts">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+<i class="fa-solid fa-triangle-exclamation fa-2x text-danger"></i>
+
+<h5 class="mt-2">
+
+Low Stock
+
+</h5>
+
+<h2 id="lowStockProducts">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= SEARCH + FILTER ================= -->
+
+<div class="card shadow-sm p-4 mb-4">
+
+<div class="row g-3">
+
+<div class="col-md-6">
+
+<input
+type="text"
+class="form-control"
+id="searchProduct"
+placeholder="Search Product...">
+
+</div>
+
+<div class="col-md-6">
+
+<select
+class="form-select"
+id="productFilter">
+
+<option value="all">All Products</option>
+
+<option value="farmer">
+Farmer Products
+</option>
+
+<option value="retailer">
+Retailer Products
+</option>
+
+<option value="lowStock">
+Low Stock
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- ================= PRODUCTS TABLE ================= -->
+
+<div class="card shadow-sm">
+
+<div class="card-header bg-primary text-white">
+
+<h5 class="mb-0">
+
+All Products
+
+</h5>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle mb-0">
+
+<thead>
+
+<tr>
+
+<th>Image</th>
+
+<th>Product</th>
+
+<th>Seller</th>
+
+<th>Type</th>
+
+<th>Price</th>
+
+<th>Stock</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="productsTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/admin-product.js"></script>
+
+</body>
+
+</html>

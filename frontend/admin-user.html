@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin - Users</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/admin-user.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+<div class="container">
+
+
+<a class="navbar-brand" href="admin-dashboard.html">
+
+<i class="fa-solid fa-leaf"></i>
+FarmCart Admin
+
+</a>
+
+
+<button class="navbar-toggler"
+data-bs-toggle="collapse"
+data-bs-target="#adminNav">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+
+
+<div class="collapse navbar-collapse" id="adminNav">
+
+
+<ul class="navbar-nav ms-auto">
+
+
+<li class="nav-item">
+<a class="nav-link"
+href="admin-dashboard.html">
+
+Dashboard
+
+</a>
+</li>
+
+
+<li class="nav-item">
+<a class="nav-link active"
+href="admin-user.html">
+
+Users
+
+</a>
+</li>
+
+
+<li class="nav-item">
+<a class="nav-link"
+href="admin-product.html">
+
+Products
+
+</a>
+</li>
+
+
+<li class="nav-item">
+<a class="nav-link"
+href="admin-order.html">
+
+Orders
+
+</a>
+</li>
+
+
+<li class="nav-item">
+<a class="nav-link"
+href="admin-packaging-returns.html">
+
+Packaging Returns
+
+</a>
+</li>
+
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="admin-profile.html">
+
+Profile
+
+</a>
+
+</li>
+
+
+<li class="nav-item">
+
+<a class="nav-link"
+onclick="logout()"
+style="cursor:pointer">
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+
+
+<div class="container mt-4">
+
+
+
+<!-- PAGE HEADER -->
+
+<div class="page-header mb-4">
+
+
+<h2>
+
+<i class="fa-solid fa-users text-primary"></i>
+
+User Management
+
+</h2>
+
+
+<p class="text-muted">
+
+Manage customers, farmers, retailers and admins
+
+</p>
+
+
+</div>
+
+
+
+
+
+<!-- STATS CARDS -->
+
+
+<div class="row g-4 mb-4">
+
+
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+
+<i class="fa-solid fa-users fa-2x text-primary"></i>
+
+<h5 class="mt-2">
+Total Users
+</h5>
+
+<h2 id="totalUsers">
+0
+</h2>
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+
+<i class="fa-solid fa-user fa-2x text-success"></i>
+
+<h5 class="mt-2">
+Customers
+</h5>
+
+<h2 id="customerCount">
+0
+</h2>
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+
+<i class="fa-solid fa-seedling fa-2x text-warning"></i>
+
+<h5 class="mt-2">
+Farmers
+</h5>
+
+<h2 id="farmerCount">
+0
+</h2>
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+
+<i class="fa-solid fa-store fa-2x text-danger"></i>
+
+<h5 class="mt-2">
+Retailers
+</h5>
+
+<h2 id="retailerCount">
+0
+</h2>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- SEARCH FILTER -->
+
+
+<div class="card shadow-sm p-3 mb-4">
+
+
+<div class="row g-3">
+
+
+<div class="col-md-8">
+
+
+<input 
+type="text"
+id="searchUser"
+class="form-control"
+placeholder="Search user by name or email">
+
+
+</div>
+
+
+
+<div class="col-md-4">
+
+
+<select id="roleFilter"
+class="form-select">
+
+
+<option value="all">
+All Roles
+</option>
+
+
+<option value="customer">
+Customer
+</option>
+
+
+<option value="farmer">
+Farmer
+</option>
+
+
+<option value="retailer">
+Retailer
+</option>
+
+
+<option value="admin">
+Admin
+</option>
+
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- USERS TABLE -->
+
+
+<div class="card shadow-sm">
+
+
+<div class="card-body">
+
+
+<h4 class="mb-3">
+
+All Users
+
+</h4>
+
+
+
+<div class="table-responsive">
+
+
+<table class="table table-hover">
+
+
+<thead>
+
+
+<tr>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Role</th>
+
+<th>Joined</th>
+
+<th>Action</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="usersTable">
+
+
+<!-- Dynamic Data -->
+
+
+</tbody>
+
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script src="js/admin-user.js"></script>
+
+
+</body>
+
+
+</html>

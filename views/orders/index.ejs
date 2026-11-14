@@ -1,0 +1,52 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+  <title>Orders</title>
+</head>
+<body>
+  <h1>All Orders</h1>
+  <a href="/orders/new">Create New Order</a>
+  <ul>
+    <% orders.forEach(order => { %>
+      <li>
+        Order ID: <%= order._id %> | 
+        Buyer: <%= order.buyer ? order.buyer.name : "Unknown" %> | 
+        Total: ₹<%= order.totalAmount %> | 
+        Status: <%= order.status %> |
+        <a href="/orders/<%= order._id %>">View</a>
+        % orders.forEach(order => { %>
+  </li>
+    <% }) %>
+  </ul>
+</body>
+</html>-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Orders</title>
+</head>
+<body>
+  <h1>All Orders</h1>
+  <a href="/orders/new">Create New Order</a>
+  <ul>
+    <% orders.forEach(order => { %>
+      <li>
+        Order ID: <%= order._id %> | 
+        Buyer: <%= order.buyer ? order.buyer.name : "Unknown" %> | 
+        Total: ₹<%= order.totalAmount %> | 
+        Status: <%= order.status %> |
+        <a href="/orders/<%= order._id %>">View</a>
+
+        <!-- Cancel Button for Pending Orders -->
+        <% if(order.status === "Pending") { %>
+          <form action="/orders/cancel/<%= order._id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">Cancel</button>
+          </form>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,139 @@
+body{
+ background:#f3f7f5;
+}
+
+/* Green Header */
+
+.profile-header{
+    height:220px;
+    background:linear-gradient(135deg,#198754,#20c997);
+}
+
+/* Main Card */
+
+.profile-card{
+    max-width:750px;
+    margin:auto;
+    margin-top:-90px;
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+/* Profile Image */
+.profile-img{
+    width:120px !important;
+    height:120px !important;
+    max-width:120px !important;
+    max-height:120px !important;
+    object-fit:cover;
+    border-radius:50%;
+    border:5px solid #fff;
+    display:block;
+    margin:-70px auto 20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+
+/* Name */
+
+#name{
+    font-weight:bold;
+}
+
+/* Cards */
+
+.info-box{
+    background:#f8f9fa;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.info-box:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+/* Buttons */
+
+.action-btn{
+    width:180px;
+    margin:8px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.profile-card{
+padding:25px;
+margin-top:-70px;
+}
+
+.profile-img{
+width:50px;
+height:50px;
+margin-top:-90px;
+}
+
+.action-btn{
+width:100%;
+}
+}
+
+#totalCart{
+
+    color:#0d6efd;
+    font-size:32px;
+    font-weight:bold;
+    margin:10px 0;
+
+}
+
+#accountType{
+
+    font-weight:600;
+    font-size:16px;
+
+}
+
+.seller-reward-card{
+    background:#fafafa;
+    transition:0.3s;
+}
+
+
+.seller-reward-card:hover{
+    transform:translateY(-3px);
+}
+
+/* ===== PROFILE NAVBAR */
+
+.navbar {
+    background-color: #198754 !important;
+}
+
+.navbar .navbar-brand {
+    color: #ffffff !important;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.navbar .nav-link {
+    color: #ffffff !important;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.navbar .nav-link:hover {
+    color: #d1f2df !important;
+}
+
+.navbar .nav-link.active {
+    color: #ffffff !important;
+}

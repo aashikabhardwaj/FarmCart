@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Retailer Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/retailer-dashboard.css">
+
+</head>
+
+<body>
+
+<div class="retailer-dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fa-solid fa-store sidebar-logo"></i>
+            <h2>FarmCart</h2>
+            <p>Retailer Panel</p>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="active">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </li>
+
+
+            <li onclick="location.href='retailer-products.html'" style="cursor:pointer;">
+                <i class="fa-solid fa-leaf"></i>
+                <span>My Eco Products</span>
+            </li>
+
+            <li onclick="location.href='add-ecoproducts.html'" style="cursor:pointer;">
+                <i class="fa-solid fa-plus"></i>
+                <span>Add Product</span>
+            </li>
+
+            <li  onclick="location.href='retailer-orders.html'" style="cursor:pointer;">
+                <i class="fa-solid fa-box-open"></i>
+                <span>Orders</span>
+            </li>
+
+            <li onclick="location.href='retailer-packaging.html'" style="cursor:pointer;">
+                <i class="fa-solid fa-recycle"></i>
+                <span>Packaging Returns</span>
+            </li>
+
+            <li onclick="location.href='retailer-inventory.html'" style="cursor:pointer;">
+                <i class="fa-solid fa-warehouse"></i>
+                <span>Inventory</span>
+            </li>
+
+            <li onclick="location.href='retailer-earning.html'" style="cursor:pointer;">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Earnings</span>
+            </li>
+
+            <li onclick="location.href='retailer-profile.html'" style="cursor:pointer;">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </li>
+
+            <li onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket logout-icon"></i>
+                <span>Logout</span>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Card -->
+    <div class="welcome-card">
+     <div class="welcome-left">
+        <h2>
+            <i class="fa-solid fa-store"></i>
+            Retailer Dashboard
+        </h2>
+        <h4 id="welcomeText"></h4>
+
+        <p>
+            Manage eco-friendly products, orders and inventory from one place.
+        </p>
+     </div>
+      <div class="welcome-right">
+        <img src="images/retailer-dashboard.png"
+             alt="Retailer">
+
+      </div>
+     </div>
+    <!-- Stats Cards -->
+
+ <div class="stats-grid">
+
+    <div class="stat-card"
+     onclick="location.href='retailer-products.html'"
+     style="cursor:pointer;">
+     <i class="fa-solid fa-leaf stat-icon"></i>
+     <h5>Total Eco Products</h5>
+     <h2 id="totalProducts">0</h2>
+    </div>
+
+    <div class="stat-card"
+     onclick="location.href='retailer-orders.html'"
+     style="cursor:pointer;">
+     <i class="fa-solid fa-cart-shopping stat-icon"></i>
+     <h5>Total Orders</h5>
+     <h2 id="totalOrders">0</h2>
+    </div>
+
+    <div class="stat-card" 
+     onclick="location.href='retailer-earning.html'"
+     style="cursor:pointer;">
+        <i class="fa-solid fa-indian-rupee-sign stat-icon"></i>
+        <h5>Total Revenue</h5>
+        <h2 id="totalRevenue">₹0</h2>
+    </div>
+
+    <div class="stat-card" 
+     onclick="location.href='retailer-inventory.html'"
+     style="cursor:pointer;">
+        <i class="fa-solid fa-triangle-exclamation stat-icon"></i>
+        <h5>Low Stock</h5>
+        <h2 id="lowStock">0</h2>
+    </div>
+
+    <div class="stat-card"
+     onclick="location.href='retailer-packaging.html'"
+     style="cursor:pointer;">
+     <i class="fa-solid fa-recycle stat-icon"></i>
+     <h5>Packaging Requests</h5>
+     <h2 id="pendingReturns">0</h2>
+    </div>
+ </div>
+   <!-- Quick Actions -->
+
+<h3 class="section-title">Quick Actions</h3>
+
+<div class="action-grid">
+
+    <div class="action-card" onclick="location.href='retailer-products.html'">
+
+        <i class="fa-solid fa-leaf"></i>
+
+        <h5>My Eco Products</h5>
+
+        <p>View & Manage Products</p>
+
+    </div>
+
+    <div class="action-card" onclick="location.href='add-ecoproducts.html'">
+
+        <i class="fa-solid fa-circle-plus"></i>
+
+        <h5>Add Product</h5>
+
+        <p>Add New Eco Product</p>
+
+    </div>
+
+    <div class="action-card" onclick="location.href='retailer-orders.html'">
+
+        <i class="fa-solid fa-box-open"></i>
+
+        <h5>Orders</h5>
+
+        <p>Manage Customer Orders</p>
+
+    </div>
+
+    <div class="action-card" onclick="location.href='retailer-inventory.html'">
+
+        <i class="fa-solid fa-warehouse"></i>
+
+        <h5>Inventory</h5>
+
+        <p>Manage Stock</p>
+
+    </div>
+
+</div>
+
+<!-- Dashboard Insights -->
+
+<h3 class="section-title">Business Insights</h3>
+
+<div class="insights-grid">
+
+    <!-- Best Selling Products -->
+
+    <div class="insight-card">
+
+        <h4>
+            <i class="fa-solid fa-fire"></i>
+            Best Selling Products
+        </h4>
+
+        <ul class="insight-list" id="bestSellingProducts">
+
+        </ul>
+
+    </div>
+
+    <!-- Inventory Alerts -->
+
+    <div class="insight-card">
+
+        <h4>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Inventory Alerts
+        </h4>
+
+        <ul class="insight-list" id="inventoryAlerts">
+
+        </ul>
+
+    </div>
+
+</div>
+
+<!-- Recent Orders -->
+
+<h3 class="section-title">Recent Orders</h3>
+
+<div class="recent-orders">
+
+    <table class="table table-hover align-middle">
+
+        <thead>
+
+            <tr>
+
+                <th>Order ID</th>
+
+                <th>Customer</th>
+
+                <th>Product</th>
+
+                <th>Amount</th>
+
+                <th>Status</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="recentOrders">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- Smart Restock Suggestions -->
+
+<h3 class="section-title">Smart Restock Suggestions</h3>
+
+<div class="restock-grid" id="restockSuggestions">
+
+</div>
+
+    </main>
+
+</div>
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JS -->
+
+<script src="js/retailer-dashboard.js"></script>
+
+</body>
+
+</html>

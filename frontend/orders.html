@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light whole-nav">
+    <!nav class="navbar navbar-expand-lg navbar-light bg-light, whole-nav">
+  <a class="navbar-brand" href="#">Farmcart</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="farmers.html">Farmers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="products.html">Eco-friendly</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cart.html">Cart</a>
+      </li>
+      <li class="nav-item" id="loginNav">
+        <a class="nav-link" href="login.html">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="orders.html">Orders</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="profile.html">Profile</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container my-5">
+  <h1>My Orders</h1>
+  <div id="ordersList">Loading...</div>
+</div>
+<!-- Return Packaging Modal -->
+
+<div class="modal fade"
+     id="returnPackagingModal"
+     tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+
+                    Return Packaging
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <input
+                    type="hidden"
+                    id="returnOrderId">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Packaging Photo
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="packagingImage"
+                        class="form-control"
+                        accept="image/*">
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Packaging Condition
+
+                    </label>
+
+                    <select
+                        id="packagingCondition"
+                        class="form-select">
+
+                        <option value="Excellent">
+
+                            Excellent
+
+                        </option>
+
+                        <option value="Good"
+                                selected>
+
+                            Good
+
+                        </option>
+
+                        <option value="Damaged">
+
+                            Damaged
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Comment (Optional)
+
+                    </label>
+
+                    <textarea
+                        id="packagingComment"
+                        class="form-control"
+                        rows="3"></textarea>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="submitPackagingReturn()">
+
+                    Submit Request
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+const ordersList = document.getElementById("ordersList");
+const token = localStorage.getItem("token");
+
+fetch("http://localhost:8080/api/my-orders-with-packaging", {
+  headers: { "Authorization": `Bearer ${token}` }
+})
+.then(async res => {
+
+  const orders = await res.json();
+
+  console.log("API Response:", orders);
+
+  return orders;
+
+})
+.then(orders => {
+  if(!orders.length) {
+    ordersList.innerText = "No orders yet.";
+    return;
+  }
+
+  ordersList.innerHTML = orders.map(o => {
+  console.log("Order ID:", o._id);
+console.log("Items:", o.items);
+console.log("Packaging Request:", o.packagingRequest);
+   const itemsHTML = o.items.map(i => {
+
+  if (!i.product) {
+    console.log("Broken Order:", o);
+    return `
+      <div class="product-item">
+        <div class="text-danger">
+          Product not available
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="product-item">
+      <img src="${i.product.image}" class="order-product-img">
+
+      <div>
+        <strong>${i.product.name}</strong><br>
+        Quantity: ${i.quantity}<br>
+        Amount: ₹${i.product.price * i.quantity}
+      </div>
+    </div>
+  `;
+
+}).join("");
+    const shortId = o._id.slice(-4).toUpperCase();
+    const orderDate = new Date(o.createdAt).toLocaleDateString();
+    let badgeClass = "bg-warning text-dark";
+
+    if(o.status === "Confirmed"){
+       badgeClass = "bg-primary";
+    }
+
+    if(o.status === "Delivered"){
+       badgeClass = "bg-success";
+    }
+
+    if(o.status === "Cancelled"){
+       badgeClass = "bg-danger";
+    }
+    return `
+      <div class="order-card">
+        <h5>Order #${shortId}</h5>
+        <p>Ordered On: ${orderDate}</p>
+        <ul>${itemsHTML}</ul>
+        <strong>Total: ₹${o.totalAmount}</strong>
+        <p>
+         Status:
+         <span class="badge ${badgeClass}">
+         ${o.status}
+         </span>
+         </p>
+
+        
+
+         ${o.packagingStatus === "Returned" && o.rewardPointsEarned > 0 ? `
+         <div class="alert alert-success mt-2 py-2">
+         <i class="fa-solid fa-award me-2"></i>
+         <strong>Reward Earned:</strong>
+         +${o.rewardPointsEarned} Eco Points
+         </div>
+         ` : ""}
+
+         ${o.rewardPointsUsed > 0 ? `
+         <div class="alert alert-warning mt-2 py-2">
+         <i class="fa-solid fa-wallet me-2"></i>
+         <strong>Reward Used:</strong>
+         ${o.rewardPointsUsed} Coins
+         (₹${o.rewardDiscount} Discount)
+         </div>
+         ` : ""}
+
+         ${o.status === "Delivered" && o.packagingType ? `
+
+         <div class="card border-primary shadow-sm mt-3">
+
+         <div class="card-body">
+          <p class="mb-2">
+           <strong>Packaging:</strong> ${o.packagingType}
+          </p>
+
+           <h6 class="fw-bold text-primary">
+
+             <i class="fa-solid fa-box-open me-2"></i>
+
+             Reusable Packaging
+
+           </h6>
+
+           <p class="text-muted small mb-3">
+
+             This order was delivered in reusable packaging.
+             Return it to earn Eco Points, improve your Eco Status,
+             and contribute to a more sustainable environment.
+
+           </p>
+
+             ${!o.packagingRequest ? `
+
+              <div class="alert alert-light border mb-3">
+
+               <strong>Estimated Rewards</strong>
+
+               <ul class="mb-0 mt-2">
+
+               <li>Earn Eco Points based on packaging type & condition</li>
+
+               <li>Increase your Eco Status</li>
+
+               <li>Receive seller-specific reward coins</li>
+
+               <li>Redeem rewards on future purchases from the same seller</li>
+
+               </ul>
+
+              </div>
+
+             ` : ""}
+
+           ${!o.packagingRequest ? `
+
+            <div class="d-flex gap-2">
+
+              <button
+                class="btn btn-primary btn-sm"
+                onclick="returnPackaging('${o._id}')">
+
+                <i class="fa-solid fa-arrow-rotate-left me-1"></i>
+
+                Return Packaging
+
+              </button>
+
+              <button
+                  class="btn btn-outline-secondary btn-sm"
+                  onclick="keepPackaging('${o._id}')">
+
+                  <i class="fa-solid fa-box me-1"></i>
+
+                  Keep Packaging
+
+              </button>
+
+            </div>
+
+        ` : "" }
+
+        ${o.packagingRequest?.status === "Pending" ? `
+
+         <div class="alert alert-warning mt-3 mb-0">
+
+         <i class="fa-solid fa-clock me-2"></i>
+
+         <strong>Return Request Submitted</strong><br>
+
+          Waiting for seller approval.
+
+         </div>
+
+         ` : ""}
+
+
+        ${o.packagingRequest?.status === "Approved" ? `
+
+         <div class="alert alert-success mt-3 mb-0">
+
+         <i class="fa-solid fa-circle-check me-2"></i>
+
+         <strong>Packaging Returned Successfully</strong><br>
+
+         Reward Earned:
+         <strong>+${o.rewardPointsEarned} Eco Points</strong>
+
+         </div>
+
+         ` : ""}
+
+
+        ${o.packagingRequest?.decision === "Keep" ? `
+
+         <div class="alert alert-secondary mt-3 mb-0">
+
+         <i class="fa-solid fa-box me-2"></i>
+
+         <strong>Packaging Kept</strong><br>
+
+         No rewards were issued.
+
+         </div>
+
+         ` : ""}
+
+          </div>
+
+        </div>
+     ` : ""}
+        </div>
+      `;
+}).join("");
+})
+.catch(err => console.error(err));
+</script>
+
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+
+if (user) {
+    const loginBtn = document.getElementById("loginNav");
+
+    if (loginBtn) {
+        loginBtn.style.display = "none";
+    }
+}
+
+async function keepPackaging(orderId){
+
+    try{
+
+        const res = await fetch(
+            "http://localhost:8080/api/packaging/decision",
+            {
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json",
+                    Authorization:"Bearer " + token
+                },
+
+                body:JSON.stringify({
+
+                    orderId,
+
+                    decision:"Keep"
+
+                })
+
+            }
+        );
+
+        const data = await res.json();
+
+        alert(data.message);
+
+        location.reload();
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+        alert("Something went wrong.");
+
+    }
+
+}
+function returnPackaging(orderId){
+
+    document.getElementById("returnOrderId").value = orderId;
+
+    const modal = new bootstrap.Modal(
+        document.getElementById("returnPackagingModal")
+    );
+
+    modal.show();
+
+}
+
+async function submitPackagingReturn(){
+
+    const orderId =
+    document.getElementById("returnOrderId").value;
+
+    const condition =
+    document.getElementById("packagingCondition").value;
+
+    const comment =
+    document.getElementById("packagingComment").value;
+
+    const image =
+    document.getElementById("packagingImage").files[0];
+
+    const formData = new FormData();
+
+    formData.append("orderId", orderId);
+
+    formData.append("decision", "Return");
+
+    formData.append("condition", condition);
+
+    formData.append("comment", comment);
+
+    if(image){
+
+        formData.append("image", image);
+
+    }
+
+    try{
+
+        const res = await fetch(
+
+            "http://localhost:8080/api/packaging/decision",
+
+            {
+
+                method:"POST",
+
+                headers:{
+
+                    Authorization:"Bearer " + token
+
+                },
+
+                body: formData
+
+            }
+
+        );
+
+        const data = await res.json();
+
+        alert(data.message);
+
+        if(res.ok){
+
+            bootstrap.Modal
+            .getInstance(
+                document.getElementById("returnPackagingModal")
+            )
+            .hide();
+
+            location.reload();
+
+        }
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+        alert("Something went wrong.");
+
+    }
+
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

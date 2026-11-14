@@ -1,0 +1,35 @@
+/* Inventory Page */
+
+.card-header h2{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+#inventoryTable td{
+    vertical-align: middle;
+}
+
+#inventoryTable input{
+    width: 120px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#inventoryTable .btn{
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-weight: 600;
+}
+
+.table{
+    margin-bottom: 0;
+}
+
+.card{
+    overflow: hidden;
+}
+
+.badge{
+    font-size: 0.9rem;
+    padding: 8px 14px;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farmcart</title>
+</head>
+<body>
+    <h2>Edit users data</h2>
+   <form method="POST" action="/userlisting/<%= userlisting._id %>?_method=PUT">
+        <input name="userlisting[name]" type="text"   value="<%=userlisting.name %>" ><br>
+        <input name="userlisting[email]" type="email" value="<%=userlisting.email %>"><br> 
+        <input name="userlisting[password]" type="password" value="<%=userlisting.password %>" ><br>
+        <input name="userlisting[role]" type="text" value="<%=userlisting.role %>"  ><br>
+        <input name="userlisting[address]" type="text" value="<%=userlisting.address %>" ><br>
+        <input name="userlisting[phone]" type="number" value="<%=userlisting.phone %>" ><br>
+     <button type="submit">Update</button>
+    </form>    
+
+</body>
+</html>

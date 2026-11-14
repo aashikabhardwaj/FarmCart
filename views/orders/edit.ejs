@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Order</title>
+</head>
+<body>
+  <h1>Edit Order</h1>
+
+  <form action="/orders/<%= order._id %>?_method=PUT" method="POST">
+    
+    <label>Buyer:</label>
+    <select name="buyer" required>
+      <% users.forEach(user => { %>
+        <option value="<%= user._id %>" <%= order.buyer && order.buyer._id.toString() === user._id.toString() ? "selected" : "" %>>
+          <%= user.name %> (<%= user.email %>)
+        </option>
+      <% }) %>
+    </select>
+    <br><br>
+
+    <label>Product:</label>
+    <select name="product" required>
+      <% products.forEach(product => { %>
+        <option value="<%= product._id %>" <%= order.items[0].product && order.items[0].product._id.toString() === product._id.toString() ? "selected" : "" %>>
+          <%= product.name %> (₹<%= product.price %>)
+        </option>
+      <% }) %>
+    </select>
+    <br><br>
+
+    <label>Quantity:</label>
+    <input type="number" name="quantity" min="1" value="<%= order.items[0].quantity %>" required>
+    <br><br>
+
+    <label>Status:</label>
+    <select name="status">
+      <option <%= order.status==="Pending" ? "selected" : "" %>>Pending</option>
+      <option <%= order.status==="Confirmed" ? "selected" : "" %>>Confirmed</option>
+      <option <%= order.status==="Shipped" ? "selected" : "" %>>Shipped</option>
+      <option <%= order.status==="Delivered" ? "selected" : "" %>>Delivered</option>
+      <option <%= order.status==="Cancelled" ? "selected" : "" %>>Cancelled</option>
+    </select>
+    <br><br>
+
+    <button type="submit">Update Order</button>
+  </form>
+
+  <a href="/orders">Back</a>
+</body>
+</html>

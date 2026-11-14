@@ -1,0 +1,55 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farmcart</title>
+</head>
+<body>
+    <h1>Products list</h1>
+     <form method="GET" action="/products/new"><button>create new product</button></form>
+    <ul>
+        <% for(let product of products){%>
+          
+            <li><a href="/products/<%= product._id%>"><%=product.name%></a></li>
+        <% } %>
+    </ul>
+        <a href="/">Back Home</a>
+        
+</body>
+</html>-->
+<h1>Products list</h1>
+<form method="GET" action="/products/new">
+  <button>Create new product</button>
+</form>
+
+<!-- Filters -->
+<label>
+  Category:
+  <select id="categoryFilter">
+    <option value="">All</option>
+    <option value="Vegetables">Vegetables</option>
+    <option value="Fruits">Fruits</option>
+    <option value="Dairy">Dairy</option>
+    <option value="Grains">Grains</option>
+    <option value="Others">Others</option>
+  </select>
+</label>
+
+<label>
+  <input type="checkbox" id="ecoFilter"> Eco Friendly
+</label>
+
+<label>
+  Search:
+  <input type="text" id="searchInput" placeholder="Search product...">
+</label>
+
+<!-- Products Grid -->
+<div id="gridContainer" class="row mt-4"></div>
+
+<a href="/">Back Home</a>
+
+
+<!-- JS -->
+ <script src="/js/products.js"></script>

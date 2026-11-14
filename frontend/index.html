@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farmcart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light, whole-nav">
+  <a class="navbar-brand" href="index.html">Farmcart</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="farmers.html">Farmers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="products.html">Eco-friendly</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cart.html">Cart</a>
+      </li>
+      <li class="nav-item" id="loginNav">
+        <a class="nav-link" href="login.html">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/orders">Orders</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="profile.html">Profile</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--herosection-->
+<section class="hero">
+  <div class="hero-content">
+    <br><br>
+    <h1>Connecting Farmers to Your Cart, Sustainably</h1><br><br>
+    <p>Fresh farm produce • Eco-friendly products • Returnable packaging</p>
+    <a href="farmers.html" class="btn green">Shop Farmers’ Products</a>
+    <a href="products.html" class="btn orange">Explore Eco-Friendly</a>
+  </div>
+</section>
+
+<!--farmer products-->
+<section class="farmers"  onclick="window.location.href='farmers.html'" style="cursor:pointer;">
+  <h2>Farmers' Fresh Picks</h2>
+  <p>Fresh and organic products directly from our farmers</p>
+  
+  <div class="farmers-grid">
+    <div class="product-card">
+      <img src="./images/tomato.jpg" alt="Tomatoes">
+      <h3> Tomatoes</h3>
+      <p>₹40 / kg</p>
+    </div>
+
+    <div class="product-card">
+      <img src="./images/wheat.jpg" alt="Wheat">
+      <h3>Organic Wheat</h3>
+      <p>₹60 / kg</p>
+    </div>
+
+    <div class="product-card">
+      <img src="./images/potato.jpg" alt="Potatoes">
+      <h3> Potatoes</h3>
+      <p>₹35 / kg</p>
+    </div>
+  </div>
+
+  <a href="farmers.html" class="btn green">View All Farmers’ Products</a>
+</section>
+<!--eco products-->
+<section class="eco" onclick="window.location.href='products.html'" style="cursor:pointer;">
+  <h2>Eco-Friendly Choices</h2>
+  <p>Shop sustainable and reusable products for a greener future</p>
+
+  <div class="eco-grid">
+    <div class="product-card">
+      <img src="./images/toothbrush.jpg" alt="Bamboo Toothbrush"  class="fixed-image">
+      <h3>Bamboo Toothbrush</h3>
+      <p>₹50 each</p>
+    </div>
+    <div class="product-card">
+      <img src="./images/jutebags.jpg" alt="Jute Bag">
+      <h3>Reusable Jute Bag</h3>
+      <p>₹120</p>
+    </div>
+
+    <div class="product-card">
+      <img src="./images/steelstraw.jpeg" alt="Steel Straws">
+      <h3>Steel Straws (Pack of 4)</h3>
+      <p>₹150</p>
+    </div>
+  </div>
+
+  <a href="products.html" class="btn orange">Explore All Eco-Friendly</a>
+</section>
+<!--pakaging-->
+<section class="packaging">
+  <h2>Our Unique Returnable Packaging Policy</h2>
+  <p>We care for the planet 🌍. Return your packaging boxes on your next order and earn rewards!</p>
+
+  <div class="policy-grid">
+    <div class="policy-card">
+      <img src="./images/Eco-packing.jpg" alt="Eco Packaging">
+      <h3>Eco-Friendly Boxes</h3>
+      <p>All packaging is reusable and recyclable.</p>
+    </div>
+
+    <div class="policy-card">
+      <img src="./images/return policy.png" alt="Return Policy">
+      <h3>Easy Returns</h3>
+      <p>Give the box back on your next delivery—simple & hassle-free.</p>
+    </div>
+
+    <div class="policy-card">
+      <img src="./images/reward.png" alt="Rewards">
+      <h3>Earn Rewards</h3>
+      <p>Get discounts or points for every returned box.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- FarmCart Platform Highlights -->
+<section class="impact">
+  <h2>FarmCart at a Glance</h2>
+  <p>A platform designed for sustainable agricultural commerce.</p>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <h3>01</h3>
+      <p>Farmer Marketplace</p>
+    </div>
+
+    <div class="impact-card">
+      <h3>02</h3>
+      <p>Eco-Friendly Products</p>
+    </div>
+
+    <div class="impact-card">
+      <h3>03</h3>
+      <p>Easy Shopping & Ordering</p>
+    </div>
+
+    <div class="impact-card">
+      <h3>04</h3>
+      <p>Sustainable Packaging</p>
+    </div>
+  </div>
+</section>
+
+<!--signup-->
+<section class="signup-banner">
+  <h2>Be Part of FarmCart 🌱</h2>
+  <p>Join us and shop directly from farmers while saving the planet!</p>
+  <a href="login.html" class="btn green">Sign Up Now</a>
+</section>
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <div class="container">
+    <p class="mb-1">&copy; 2025 FarmCart. All Rights Reserved.</p>
+    <a href="#" class="text-info mx-2">Privacy Policy</a> |
+    <a href="#" class="text-info mx-2">Terms & Conditions</a>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

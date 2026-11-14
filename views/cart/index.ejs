@@ -1,0 +1,27 @@
+<h1>My Cart</h1>
+
+<% if (cart && cart.items.length > 0) { %>
+  <ul>
+    <% cart.items.forEach(function(i) { %>
+      <li>
+        <%= i.product.name %> - Qty: <%= i.quantity %> - ₹<%= i.product.price * i.quantity %>
+        <form action="/cart/remove/<%= i.product._id %>" method="POST" style="display:inline;">
+          <input type="hidden" name="buyerId" value="<%= cart.buyer %>">
+          <button type="submit">Remove</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+
+  <p><b>Total: ₹<%= cart.totalPrice %></b></p>
+<% } else { %>
+  <p>Your cart is empty.</p>
+<% } %>
+
+<a href="/products">Continue Shopping</a>
+
+
+
+
+
+

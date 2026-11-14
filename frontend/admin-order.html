@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin - Orders</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/admin-order.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+<div class="container">
+
+<a class="navbar-brand" href="admin-dashboard.html">
+
+<i class="fa-solid fa-leaf"></i>
+
+FarmCart Admin
+
+</a>
+
+<button
+class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#adminNavbar">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse" id="adminNavbar">
+
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="admin-dashboard.html">
+
+Dashboard
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="admin-user.html">
+
+Users
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="admin-product.html">
+
+Products
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link active"
+href="admin-order.html">
+
+Orders
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="admin-packaging-returns.html">
+
+Packaging Returns
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link"
+href="admin-profile.html">
+
+Profile
+
+</a>
+
+</li>
+
+<li class="nav-item">
+
+<a
+class="nav-link"
+href="#"
+onclick="logout()">
+
+Logout
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- ================= PAGE ================= -->
+
+<div class="container mt-4">
+
+<div class="page-header mb-4">
+
+<h2>
+
+<i class="fa-solid fa-cart-shopping text-primary"></i>
+
+Order Management
+
+</h2>
+
+<p class="text-muted">
+
+Monitor and manage all customer orders.
+
+</p>
+
+</div>
+
+<!-- ================= STATS ================= -->
+
+<div class="row g-4 mb-4">
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+<i class="fa-solid fa-box fa-2x text-primary"></i>
+
+<h5 class="mt-2">
+
+Total Orders
+
+</h5>
+
+<h2 id="totalOrders">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+<i class="fa-solid fa-clock fa-2x text-warning"></i>
+
+<h5 class="mt-2">
+
+Pending
+
+</h5>
+
+<h2 id="pendingOrders">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+<i class="fa-solid fa-circle-check fa-2x text-success"></i>
+
+<h5 class="mt-2">
+
+Confirmed
+
+</h5>
+
+<h2 id="confirmedOrders">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow-sm text-center p-3">
+
+<i class="fa-solid fa-truck fa-2x text-info"></i>
+
+<h5 class="mt-2">
+
+Shipped
+
+</h5>
+
+<h2 id="shippedOrders">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= SEARCH + FILTER ================= -->
+
+<div class="card shadow-sm p-4 mb-4">
+
+<div class="row g-3">
+
+<div class="col-md-6">
+
+<input
+type="text"
+class="form-control"
+id="searchOrder"
+placeholder="Search Customer / Order ID">
+
+</div>
+
+<div class="col-md-6">
+
+<select
+class="form-select"
+id="statusFilter">
+
+<option value="all">All Orders</option>
+
+<option value="Pending">Pending</option>
+
+<option value="Confirmed">Confirmed</option>
+
+<option value="Shipped">Shipped</option>
+
+<option value="Delivered">Delivered</option>
+
+<option value="Cancelled">Cancelled</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- ================= ORDERS TABLE ================= -->
+
+<div class="card shadow-sm">
+
+<div class="card-header bg-primary text-white">
+
+<h5 class="mb-0">
+
+All Orders
+
+</h5>
+
+</div>
+
+<div class="table-responsive">
+
+<table class="table table-hover align-middle mb-0">
+
+<thead>
+
+<tr>
+
+<th>Order ID</th>
+
+<th>Customer</th>
+
+<th>Seller</th>
+
+<th>Total</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ordersTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/admin-order.js"></script>
+
+</body>
+
+</html>

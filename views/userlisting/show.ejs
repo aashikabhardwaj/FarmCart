@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmcart</title>
+</head>
+<body>
+   <h3>userlisting</h3> 
+   <ul>
+    <li> <%= userlisting.name %></li>
+    <li> <%= userlisting.email %></li>
+    <li> <%= userlisting.password %></li>
+    <li> <%= userlisting.role %></li>
+    <li> <%= userlisting.address %></li>
+    <li> <%= userlisting.phone %></li>
+   </ul>
+   <br>
+    <a href="/userlisting/<%= userlisting._id %>/edit">Edit</a> |<br><br>
+   <a href="/userlisting">Back to All Users</a>
+   <br><br>
+   <form method="POST" action="/userlisting/<%=userlisting._id%>?_method=DELETE">
+    <button type="submit">Delete</button>
+</body>
+</html>

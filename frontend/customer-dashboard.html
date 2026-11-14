@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/customer-dashboard.css">
+</head>
+
+<body>
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar customer-navbar">
+<div class="container-fluid px-4">
+<a href="customer-dashboard.html" class="navbar-brand">
+    FarmCart
+</a>
+
+<div class="search-box">
+<input
+type="text"
+placeholder="Search fresh products..."
+id="searchInput">
+<button id="searchBtn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+
+<div class="dropdown">
+<button
+class="profile-btn"
+data-bs-toggle="dropdown">
+<i class="fa-solid fa-user"></i>
+</button>
+
+<ul class="dropdown-menu dropdown-menu-end">
+<li>
+<a
+class="dropdown-item"
+href="profile.html">
+My Profile
+</a>
+</li>
+
+<li>
+<hr class="dropdown-divider">
+</li>
+
+<li>
+<a
+class="dropdown-item text-danger"
+href="#"
+onclick="logout()">
+Logout
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero-section">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-6">
+<div class="hero-content">
+<h1>
+Farm Fresh,<br>
+Straight to Your Door.
+</h1>
+<p>
+Organic • Healthy • Sustainable
+</p>
+
+<p>
+Fresh vegetables and eco-friendly products,
+all in one place.
+</p>
+
+<div class="hero-buttons">
+<a href="farmers.html"
+class="btn btn-success btn-lg">
+Shop Farmers
+</a>
+
+<a
+href="products.html?category=eco"
+class="btn btn-outline-success btn-lg">
+Explore Products
+</a>
+</div>
+</div>
+</div>
+
+<div class="col-lg-6 text-center">
+<img
+src="images/customer-dashboard.png"
+class="hero-image"
+alt="Farm Banner">
+</div>
+</div>
+</div>
+
+</section>
+
+<!-- ================= EXPLORE BY CATEGORY ================= -->
+<section class="category-section">
+<div class="container">
+<div class="section-header">
+<h2>Explore by Category</h2>
+<a href="products.html" class="view-all">
+View All
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+
+<div class="row g-4 mt-2">
+<!-- Vegetables -->
+<div class="col-lg-3 col-md-6">
+<div class="category-card">
+<h4>Fresh Vegetables</h4>
+<p>Fresh & Healthy</p>
+<span id="vegCount">128 Products</span>
+<a href="products.html?category=Vegetables">
+Explore
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+</div>
+
+<!-- Fruits -->
+<div class="col-lg-3 col-md-6">
+<div class="category-card fruit-card">
+<h4>Fresh Fruits</h4>
+<p>Sweet & Juicy</p>
+<span id="fruitCount">62 Products</span>
+<a href="products.html?category=Fruits">
+Explore
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+</div>
+
+<!-- Grains -->
+<div class="col-lg-3 col-md-6">
+<div class="category-card grain-card">
+<h4>Grains</h4>
+<p>Daily Essentials</p>
+<span id="grainCount">48 Products</span>
+<a href="products.html?category=Grains">
+Explore
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+</div>
+
+<!-- Eco -->
+<div class="col-lg-3 col-md-6">
+<div class="category-card eco-card">
+<h4>Eco Products</h4>
+<p>Sustainable Living</p>
+<span id="ecoCount">36 Products</span>
+<a href="products.html?category=Eco">
+Explore
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ================= RECOMMENDED ================= -->
+<section class="recommend-section">
+<div class="container">
+<div class="section-header">
+<h2>Recommended For You</h2>
+<a href="products.html" class="view-all">
+View All
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+
+<div class="product-slider"
+id="recommendedProducts">
+<!-- JS se products aayenge -->
+</div>
+</div>
+
+</section>
+<!-- ================= RECENTLY ADDED ================= -->
+<section class="recent-section">
+<div class="container">
+<div class="section-header">
+<h2>Recently Added</h2>
+<a href="products.html" class="view-all">
+View All
+<i class="fa-solid fa-arrow-right"></i>
+</a>
+</div>
+
+<div class="product-slider"
+id="recentProducts">
+<!-- JS will render latest products -->
+</div>
+</div>
+</section>
+
+<!-- ================= WHY CHOOSE FARMCART ================= -->
+<section class="why-section">
+<div class="container">
+<h2 class="text-center mb-5">
+Why Choose FarmCart?
+</h2>
+<div class="row justify-content-center">
+<div class="col-lg-3 col-md-6 mb-4">
+<div class="why-item">
+<i class="fa-solid fa-tractor"></i>
+<h5>Direct From Farmers</h5>
+</div>
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+<div class="why-item">
+<i class="fa-solid fa-recycle"></i>
+<h5>Eco Friendly</h5>
+</div>
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+<div class="why-item">
+<i class="fa-solid fa-shield-halved"></i>
+<h5>Trusted Sellers</h5>
+</div>
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+<div class="why-item">
+<i class="fa-solid fa-truck-fast"></i>
+<h5>Fast Delivery</h5>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+<div class="container">
+<p class="mb-1">
+&copy; 2026 FarmCart. All Rights Reserved.
+</p>
+<a
+href="#"
+class="text-info text-decoration-none mx-2">
+Privacy Policy
+</a>
+|
+<a
+href="#"
+class="text-info text-decoration-none mx-2">
+Terms & Conditions
+</a>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/customer-dashboard.js"></script>
+</body>
+</html>

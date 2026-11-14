@@ -1,0 +1,106 @@
+body{
+    background:#f5f7fa;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Header */
+
+.page-header{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.page-header h2{
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.page-header p{
+    margin:0;
+}
+
+/* Search */
+
+#searchInput{
+    height:48px;
+    border-radius:12px;
+    border:1px solid #ddd;
+}
+
+#searchInput:focus{
+    border-color:#198754;
+    box-shadow:0 0 10px rgba(25,135,84,.2);
+}
+
+/* Product Card */
+
+.product-card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    transition:.3s;
+    margin-bottom:25px;
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+}
+
+.product-card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+
+/* Card Body */
+
+.product-body{
+    padding:18px;
+}
+
+.product-name{
+    font-size:22px;
+    font-weight:700;
+}
+
+.product-price{
+    color:#198754;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* Badge */
+
+.eco-badge{
+    background:#198754;
+    color:white;
+    padding:6px 12px;
+    border-radius:25px;
+    font-size:13px;
+}
+
+/* Stock */
+
+.stock{
+    margin-top:10px;
+    font-weight:600;
+}
+
+/* Buttons */
+
+.action-btns{
+    display:flex;
+    justify-content:space-between;
+    margin-top:18px;
+}
+
+.edit-btn{
+    width:48%;
+}
+
+.delete-btn{
+    width:48%;
+}

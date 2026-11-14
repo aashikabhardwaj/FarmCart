@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FarmCart - Sign Up</title>
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/signup.css">
+
+</head>
+
+
+<body>
+
+    <div class="signup-page">
+
+        <div class="signup-card">
+
+            <!-- Header -->
+
+            <div class="signup-header">
+                <h1>Sign Up</h1>
+
+                <p>
+                    Create your FarmCart account
+                </p>
+
+            </div>
+
+
+            <!-- Signup Form -->
+
+            <form id="signupForm">
+
+                <!-- Name -->
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter Name"
+                    required
+                >
+
+
+                <!-- Email -->
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter Email"
+                    required
+                >
+
+
+                <!-- Password -->
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter Password"
+                    required
+                >
+
+                 <!-- Phone Number -->
+
+                 <label for="phone">
+                 Phone Number
+                 </label>
+
+                 <input
+                   type="tel"
+                   id="phone"
+                   placeholder="Enter Phone Number"
+                   maxlength="10"
+                   required
+                   >
+
+
+                 <!-- Address -->
+
+                  <label for="address">
+                      Address
+                  </label>
+
+                  <textarea
+                    id="address"
+                    placeholder="Enter Address"
+                    rows="3"
+                    required
+                    ></textarea>
+
+
+                <!-- Role -->
+
+                <div class="signup-role">
+
+                    <label for="role">
+                        Account Type
+                    </label>
+
+                    <select id="role" required>
+
+                        <option value="buyer">
+                            Customer
+                        </option>
+
+                        <option value="farmer">
+                            Farmer
+                        </option>
+
+                        <option value="retailer">
+                            Retailer
+                        </option>
+
+                        <option value="admin">
+                            Admin
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Admin Secret Code -->
+
+                <div
+                    id="adminBox"
+                    class="admin-code-box"
+                    style="display:none;"
+                >
+
+                    <input
+                        type="password"
+                        id="adminCode"
+                        placeholder="Enter Admin Secret Code"
+                    >
+
+                </div>
+
+
+                <!-- Signup Button -->
+
+                <button
+                    type="submit"
+                    class="signup-btn"
+                >
+                    Sign Up
+                </button>
+
+            </form>
+
+
+            <!-- Login -->
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Existing JS -->
+
+    <script src="js/signup.js"></script>
+
+</body>
+
+</html>

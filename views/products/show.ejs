@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>farmcart</title>
+</head>
+<body>
+    <h2>Show Product</h2>
+    <ul>
+        <img src="<%= product.image %>" alt="<%= product.name %>" width="250" height="250"/>    
+        <li>Name: <%= product.name %></li>
+        <li>Price: <%= product.price %></li>
+        <li>Quantity: <%= product.quantity %></li>
+        <li>Description: <%= product.description %></li>
+        <li>Category: <%= product.category %></li>
+        <li>Seller: <%= product.seller %></li>
+        <li>Availability: <%= product.availability %></li>
+        <li>Ratings: <%= product.ratings %></li>
+        
+    </ul>
+
+    <!-- Admin/Seller -->
+    <a href="/products/<%= product._id %>/edit">Edit</a>
+    <br><br>
+    <form method="POST" action="/products/<%= product._id %>?_method=DELETE">
+        <button type="submit">Delete</button>
+    </form>
+
+    <br><br>
+    <!-- Customer -->
+    <form method="POST" action="/cart/add/<%= product._id %>">
+        <input type="hidden" name="buyerId" value="demoUserId123">
+        <button type="submit">Add to Cart</button>
+    </form>
+    <a href="/checkout/<%= product._id %>"><button>Buy now</button></a>
+    <br><br>
+    <a href="/products">Back to All Products</a>
+
+    <hr>
+
+    <!-- Add a Review--> 
+    <h2>Add a Review</h2>
+    <form action="/reviews/<%= product._id %>" method="POST">
+        <label for="rating">Rating:</label>
+        <select name="rating" id="rating" required>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+        </select>
+        <br><br>
+
+        <label for="comment">Comment:</label>
+        <textarea name="comment" id="comment" rows="4" cols="40" required></textarea>
+        <br><br>
+
+        <!-- Temporary user field (replace with login later) -->
+        <input type="hidden" name="user" value="demoUserId123">
+
+        <button type="submit">Submit Review</button>
+    </form>
+
+    <hr>
+
+    <!-- Customer Reviews -->
+    <h2>Customer Reviews</h2>
+    <% if (reviews && reviews.length > 0) { %>
+        <ul>
+            <% reviews.forEach(r => { %>
+                <li>
+                    <strong><%= r.user ? r.user.username : "Anonymous" %></strong>
+                    ⭐ <%= r.rating %> - <%= r.comment %>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No reviews yet.</p>
+    <% } %>
+
+</body>
+</html>
+
