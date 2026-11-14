@@ -129,7 +129,7 @@ Make sure the following software is installed:
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/FarmCart.git
+git clone https://github.com/aashikabhardwaj/FarmCart.git
 ```
 
 **2. Navigate to the project directory**
