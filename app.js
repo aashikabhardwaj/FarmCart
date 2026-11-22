@@ -51,6 +51,13 @@ app.get("/", (req, res) => {
 // Register
 app.post("/api/auth/register", async (req, res) => {
   const { name, email, password, role } = req.body;
+  const allowedRoles = ["buyer", "farmer", "retailer"];
+
+  if (!allowedRoles.includes(role)) {
+      return res.status(403).json({
+      message: "Invalid role. Public registration is not allowed for this role."
+      });
+   }
   const userExists = await User.findOne({ email });
   if (userExists) return res.status(400).json({ message: "User already exists" });
 
@@ -1490,39 +1497,85 @@ app.get("/api/retailer-earnings", protect, async (req, res) => {
 
 
 
+
 app.put("/api/orders/:id/status", protect, async (req, res) => {
-
   try {
+    const { status } = req.body;
 
-    const order = await Order.findByIdAndUpdate(
-      req.params.id,
-      {
-        status: req.body.status
-      },
-      {
-        new: true
-      }
-    );
+    const order = await Order.findById(req.params.id);
 
-    res.json(order);
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found"
+      });
+    }
+
+    // Only the assigned farmer or retailer can update this order
+    const isFarmer =
+      req.user.role === "farmer" &&
+      order.farmer &&
+      order.farmer.toString() === req.user._id.toString();
+
+    const isRetailer =
+      req.user.role === "retailer" &&
+      order.retailer &&
+      order.retailer.toString() === req.user._id.toString();
+
+    if (!isFarmer && !isRetailer) {
+      return res.status(403).json({
+        message: "You are not authorized to update this order"
+      });
+    }
+
+    // Only allow the statuses used by your dashboards
+    if (!["Confirmed", "Cancelled", "Delivered"].includes(status)) {
+      return res.status(400).json({
+        message: "Invalid order status"
+      });
+    }
+
+    // Validate status transitions
+    if (order.status === "Pending" &&
+        !["Confirmed", "Cancelled"].includes(status)) {
+      return res.status(400).json({
+        message: "Invalid status transition"
+      });
+    }
+
+    if (order.status === "Confirmed" && status !== "Delivered") {
+      return res.status(400).json({
+        message: "Invalid status transition"
+      });
+    }
+
+    if (["Delivered", "Cancelled"].includes(order.status)) {
+      return res.status(400).json({
+        message: "This order cannot be updated"
+      });
+    }
+
+    order.status = status;
+    await order.save();
+
+    res.json({
+      message: "Order status updated successfully",
+      order
+    });
 
   } catch (err) {
-
     console.error(err);
 
     res.status(500).json({
       message: "Status update failed"
     });
-
   }
-
 });
 
+
 // add for packaging functionality
+
 app.put("/api/orders/:id/packaging", protect, async (req, res) => {
-
   try {
-
     const { packagingType } = req.body;
 
     const order = await Order.findById(req.params.id);
@@ -1533,7 +1586,30 @@ app.put("/api/orders/:id/packaging", protect, async (req, res) => {
       });
     }
 
-    order.packagingType = packagingType;
+    // Only the assigned farmer or retailer can update packaging
+    const isFarmer =
+      req.user.role === "farmer" &&
+      order.farmer &&
+      order.farmer.toString() === req.user._id.toString();
+
+    const isRetailer =
+      req.user.role === "retailer" &&
+      order.retailer &&
+      order.retailer.toString() === req.user._id.toString();
+
+    if (!isFarmer && !isRetailer) {
+      return res.status(403).json({
+        message: "You are not authorized to update this order's packaging"
+      });
+    }
+
+    if (!packagingType || typeof packagingType !== "string" || !packagingType.trim()) {
+      return res.status(400).json({
+        message: "Please select a valid packaging type"
+      });
+    }
+
+    order.packagingType = packagingType.trim();
     order.packagingStatus = "Selected";
 
     await order.save();
@@ -1544,16 +1620,14 @@ app.put("/api/orders/:id/packaging", protect, async (req, res) => {
     });
 
   } catch (err) {
-
     console.error(err);
 
     res.status(500).json({
       message: "Packaging save failed"
     });
-
   }
-
 });
+
 
 // Get current user's orders
 app.get("/api/my-orders", protect, async (req, res) => {
@@ -2299,32 +2373,24 @@ app.get("/api/admin/orders/:id", protect, async (req,res)=>{
 //=======login/signup=======
 app.post("/api/auth/signup", async (req, res) => {
   try {
-    const { name, email, password, role, adminCode, phone, address } = req.body;
+    const { name, email, password, role, phone, address } = req.body;
+    const allowedRoles = ["buyer", "farmer", "retailer"];
+
+    if (!allowedRoles.includes(role)) {
+    return res.status(403).json({
+       message: "Invalid role. Public registration is not allowed."
+     });
+     }
 
     // Convert email to lowercase for consistency
     const existingUser = await User.findOne({ email: email.toLowerCase() });
     if (existingUser) return res.status(400).json({ message: "User already exists" });
 
-    //const hashedPass = await bcrypt.hash(password, 10);
-    // Admin Secret Code Check
-
-    if (role === "admin") {
-
-       if (adminCode !== "FARMCART2026") {
-
-           return res.status(400).json({
-               message: "Invalid Admin Secret Code"
-           });
-
-       }
-
-    }
-
     const newUser = new User({
       name,
       email: email.toLowerCase(),
       password: password,
-      role: role || "buyer", // default role
+      role: role, // default role
       phone,
       address
     });
